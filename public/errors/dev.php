@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ошибка!</title>
+</head>
+<body>
+<h1>An error has occurred!</h1>
+<p><b>Code:</b> <?= $errNo ?></p>
+<p><b>Message:</b> <?= $errStr ?></p>
+<p><b>File:</b> <?= $errFile ?></p>
+<p><b>Line:</b> <?= $errLine ?></p>
+</body>
+</html>

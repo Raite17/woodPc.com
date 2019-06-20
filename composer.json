@@ -1,7 +1,7 @@
 {
     "autoload": {
         "psr-4": {
-            "woodpc\\": "vendor/woodpc",
+            "woodpc\\": "vendor/woodpc/core",
             "app\\": "app"
         }
     },

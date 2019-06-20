@@ -13,11 +13,11 @@ define("CORE", ROOT . '/vendor/woodpc/core');
 //Указываем папку libs
 define("LIBS", ROOT . '/vendor/woodpc/core/libs');
 //Указываем папку cache
-define('CACHE', ROOT . '/tmp/cache');
+define("CACHE", ROOT . '/tmp/cache');
 //Указываем папку config
-define('CONFIG', ROOT . '/config');
+define("CONFIG", ROOT . '/config');
 //Шаблон по умолчанию
-define('LAYOUT', 'default');
+define("LAYOUT", 'default');
 
 //http://localhost/woodpc.com/public/index.php
 $appPath = "http://{$_SERVER['HTTP_HOST']}{$_SERVER['PHP_SELF']}";
