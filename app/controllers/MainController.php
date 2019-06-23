@@ -1,9 +1,13 @@
 <?php
+
 namespace app\controllers;
 
-class MainController
-{ 
-    public function indexAction () {
+use woodpc\base\Controller;
+
+class MainController extends AppController
+{
+    public function indexAction()
+    {
         echo __METHOD__;
     }
 }
