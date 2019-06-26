@@ -17,7 +17,7 @@ define("CACHE", ROOT . '/tmp/cache');
 //Указываем папку config
 define("CONFIG", ROOT . '/config');
 //Шаблон по умолчанию
-define("LAYOUT", 'default');
+define("LAYOUT", 'woodpc');
 
 //http://localhost/woodpc.com/public/index.php
 $appPath = "http://{$_SERVER['HTTP_HOST']}{$_SERVER['PHP_SELF']}";
