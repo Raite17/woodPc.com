@@ -44,3 +44,14 @@ function print_die($var, $return = false, $special = true)
     print_arr("File: {$info[0]['file']} Line: {$info[0]['line']}");
     die ();
 }
+
+function redirect($http = false)
+{
+    if ($http) {
+        $redirect = $http;
+    } else {
+        $redirect = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : PATH;
+    }
+    header("Location: $redirect");
+    exit;
+}
