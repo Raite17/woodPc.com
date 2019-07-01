@@ -33,6 +33,7 @@
 <?php endif; ?>
 
 <?php if ($hits): ?>
+<?php $currency = \woodpc\App::$app->getProperty('currency');?>
     <div class="product">
         <div class="container">
             <div class="product-top">
@@ -49,7 +50,7 @@
                                 <p>Explore Now</p>
                                 <h4>
                                     <a class="add-to-cart" href="cart/add?id=<?=$hit->id;?>"><i></i></a>
-                                    <span class=" item_price"><?= $hit->price;?></span>
+                                    <span class="item_price"><?= $currency['symbol_left']?><?= $hit->price * $currency['value'];?><?= $currency['symbol_right']?></span>
                                 </h4>
                             </div>
                         </div>
