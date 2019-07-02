@@ -2,7 +2,9 @@
 <div class="breadcrumbs">
     <div class="container">
         <div class="breadcrumbs-main">
-
+            <ol class="breadcrumb">
+                <?=$breadCrumbs;?>
+            </ol>
         </div>
     </div>
 </div>
@@ -16,11 +18,20 @@
                     <div class="col-md-5 single-top-left">
                         <div class="flexslider">
                             <ul class="slides">
-                                <li data-thumb="images/s-1.jpg">
+                                <li data-thumb="images/<?= $product->img?>">
                                     <div class="thumb-image">
-                                        <img src="images/<?= $product->img; ?>" data-imagezoom="true" class="img-responsive" alt=""/>
+                                        <img src="images/<?= $product->img?>" data-imagezoom="true" class="img-responsive" alt=""/>
                                     </div>
                                 </li>
+                                <?php if($galleries):?>
+                                    <?php foreach ($galleries as $gallery):?>
+                                    <li data-thumb="images/<?= $gallery->img?>">
+                                        <div class="thumb-image">
+                                            <img src="images/<?= $gallery->img?>" data-imagezoom="true" class="img-responsive" alt=""/>
+                                        </div>
+                                    </li>
+                                    <?php endforeach;?>
+                                <?php endif;?>
                             </ul>
                         </div>
                     </div>
@@ -59,31 +70,55 @@
                         </li>
                     </ul>
                 </div>
-                <?php if($related):?>
-                <div class="latestproducts">
-                    <div class="product-one">
-                        <?php foreach ($related as $item):?>
-                            <h3>С этим товаром так же покупают</h3>
-                            <div class="col-md-4 product-left p-left">
-                            <div class="product-main simpleCart_shelfItem">
-                                <a href="product/<?= $item['alias'];?>" class="mask">
-                                    <img class="img-responsive zoom-img" src="images/<?= $item['img'];?>" alt=""/>
-                                </a>
-                                <div class="product-bottom">
-                                    <h3><a href="product/<?=$item['title']?>"></a> </h3>
-                                    <p>Explore Now</p>
-                                    <h4>
-                                        <a class="add-to-cart" href="cart/add?id=<?=$item['id'];?>"><i></i></a>
-                                        <span class="item_price"><?= $currency['symbol_left']?><?=$item['price'] * $currency['value'];?><?= $currency['symbol_right']?></span>
-                                    </h4>
+                <?php if($related): ?>
+                    <div class="latestproducts">
+                        <div class="product-one">
+                            <h3>С этим товаром также покупают:</h3>
+                            <?php foreach($related as $item): ?>
+                                <div class="col-md-4 product-left p-left">
+                                    <div class="product-main simpleCart_shelfItem">
+                                        <a href="product/<?=$item['alias'];?>" class="mask"><img class="img-responsive zoom-img" src="images/<?=$item['img'];?>" alt="" /></a>
+                                        <div class="product-bottom">
+                                            <h3><a href="product/<?=$item['alias'];?>"><?=$item['title'];?></a></h3>
+                                            <p>Explore Now</p>
+                                            <h4>
+                                                <a class="item_add add-to-cart-link" href="cart/add?id=<?=$item['id'];?>" data-id="<?=$item['id'];?>"><i></i></a>
+                                                <span class="item_price"><?= $currency['symbol_left'];?><?=$item['price'] * $currency['value'];?><?=$currency['symbol_right'];?></span>
+                                            </h4>
+                                        </div>
+                                    </div>
                                 </div>
+                            <?php endforeach; ?>
+                            <div class="clearfix"></div>
                         </div>
-                        <?php endforeach;?>
-                        <div class="clearfix"></div>
                     </div>
-                </div>
-                <?php endif;?>
+                <?php endif; ?>
+
+                <?php if($recentlyViewed): ?>
+                    <div class="latestproducts">
+                        <div class="product-one">
+                            <h3>Недавно просмотренные:</h3>
+                            <?php foreach($recentlyViewed as $item): ?>
+                                <div class="col-md-4 product-left p-left">
+                                    <div class="product-main simpleCart_shelfItem">
+                                        <a href="product/<?=$item['alias'];?>" class="mask"><img class="img-responsive zoom-img" src="images/<?=$item['img'];?>" alt="" /></a>
+                                        <div class="product-bottom">
+                                            <h3><a href="product/<?=$item['alias'];?>"><?=$item['title'];?></a></h3>
+                                            <p>Explore Now</p>
+                                            <h4>
+                                                <a class="item_add add-to-cart-link" href="cart/add?id=<?=$item['id'];?>" data-id="<?=$item['id'];?>"><i></i></a>
+                                                <span class="item_price"><?=$currency['symbol_left'];?><?=$item['price'] * $currency['value'];?><?=$currency['symbol_right'];?></span>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                <?php endif; ?>
             </div>
+
             <div class="clearfix"></div>
         </div>
     </div>
