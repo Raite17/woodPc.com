@@ -49,7 +49,7 @@
                                 <h3><?= $hit->title;?> </h3>
                                 <p>Explore Now</p>
                                 <h4>
-                                    <a class="add-to-cart" href="cart/add?id=<?=$hit->id;?>"><i></i></a>
+                                    <a class="add-to-cart" data-id="<?=$hit->id?>" href="cart/add?id=<?=$hit->id;?>"><i></i></a>
                                     <span class="item_price"><?= $currency['symbol_left']?><?= $hit->price * $currency['value'];?><?= $currency['symbol_right']?></span>
                                 </h4>
                             </div>

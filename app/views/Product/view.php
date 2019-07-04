@@ -54,7 +54,7 @@
                             <div class="quantity">
                                 <input style="" type="number" size="4" class="form-control" name="quantity" min="1" step="1" value="1">
                             </div>
-                            <a id="productAdd" data-id="<?=$product->id;?>" href="cart/add?id=<?=$product->id;?>" class="add-cart add-to-cart item_add">Добавить в корзину</a>
+                            <a class="add-cart add-to-cart item_add" data-id="<?=$product->id;?>" href="cart/add?id=<?=$product->id;?>" >Добавить в корзину</a>
                         </div>
                     </div>
                     <div class="clearfix"></div>
