@@ -55,3 +55,9 @@ function redirect($http = false)
     header("Location: $redirect");
     exit;
 }
+
+//htmlspecialcharts
+function hsc($str)
+{
+    return htmlspecialchars($str,ENT_QUOTES);
+}
