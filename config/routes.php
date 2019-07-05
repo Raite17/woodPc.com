@@ -5,6 +5,9 @@ use woodpc\Router;
 //user routes
 Router::addRoute('^product/(?P<alias>[a-z0-9-]+)/?$', ['controller' => 'Product', 'action' => 'view']);
 
+//category routes
+Router::addRoute('^category/(?P<alias>[a-z0-9-]+)/?$', ['controller' => 'Category', 'action' => 'view']);
+
 
 // admin routes
 Router::addRoute('^admin$', ['controller' => 'Main', 'action' => 'index', 'prefix' => 'admin']);
