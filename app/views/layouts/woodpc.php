@@ -8,16 +8,16 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <html>
 <head>
     <base href="/">
-    <?=$this->getMeta();?>
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="megamenu/css/ionicons.min.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="megamenu/css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+    <?= $this->getMeta(); ?>
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="megamenu/css/ionicons.min.css" rel="stylesheet" type="text/css" media="all"/>
+    <link href="megamenu/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen"/>
     <!--theme-style-->
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
     <!--//theme-style-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 </head>
 <body>
 <!--top-header-->
@@ -31,23 +31,37 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <?php new \app\widgets\currency\Currency(); ?>
                         </select>
                     </div>
+                    <div class="btn-group">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            Личный кабинет <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <?php if (!empty($_SESSION['user'])): ?>
+                                <li><a href="#">Добро пожаловать,<?= hsc($_SESSION['user']['name']); ?></a></li>
+                                <li><a href="user/logout">Выход</a></li>
+                            <?php else: ?>
+                                <li><a href="user/login">Вход</a></li>
+                                <li><a href="user/signup">Регистрация</a></li>
+                            <?php endif; ?>
+                        </ul>
+                    </div>
                     <div class="clearfix"></div>
                 </div>
             </div>
             <div class="col-md-6 top-header-left">
-<!--                --><?php //session_destroy();?>
+                <!--                --><?php //session_destroy();?>
                 <div class="cart box_1">
                     <a href="cart/show" onclick="getCart(); return false;">
                         <div class="total">
-                            <img src="images/cart-1.png" alt="" />
-                            <?php if(!empty($_SESSION['cart'])): ?>
-                                <span class="simpleCart_total"><?=$_SESSION['cart.currency']['symbol_left'] . $_SESSION['cart.amount'] . $_SESSION['cart.currency']['symbol_right'];?></span>
+                            <img src="images/cart-1.png" alt=""/>
+                            <?php if (!empty($_SESSION['cart'])): ?>
+                                <span class="simpleCart_total"><?= $_SESSION['cart.currency']['symbol_left'] . $_SESSION['cart.amount'] . $_SESSION['cart.currency']['symbol_right']; ?></span>
                             <?php else: ?>
                                 <span class="simpleCart_total">Корзина пуста</span>
                             <?php endif; ?>
                         </div>
                     </a>
-                    <div class="clearfix"> </div>
+                    <div class="clearfix"></div>
                 </div>
             </div>
             <div class="clearfix"></div>
@@ -57,7 +71,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!--top-header-->
 <!--start-logo-->
 <div class="logo">
-    <a href="<?=PATH;?>"><h1>Wood PC</h1></a>
+    <a href="<?= PATH; ?>"><h1>Wood PC</h1></a>
 </div>
 <!--start-logo-->
 <!--bottom-header-->
@@ -72,7 +86,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         ]); ?>
                     </div>
                 </div>
-                <div class="clearfix"> </div>
+                <div class="clearfix"></div>
             </div>
             <div class="col-md-3 header-right">
                 <div class="search-bar">
@@ -80,18 +94,36 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <input type="text" class="typeahead" id="typeahead" name="s">
                         <input type="submit" value="">
                     </form>
-<!--                    <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">-->
-<!--                    <input type="submit" value="">-->
+                    <!--                    <input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">-->
+                    <!--                    <input type="submit" value="">-->
                 </div>
             </div>
-            <div class="clearfix"> </div>
+            <div class="clearfix"></div>
         </div>
     </div>
 </div>
 <!--bottom-header-->
 
 <div class="content">
-    <?=$content;?>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <?php if (isset($_SESSION['error'])) : ?>
+                    <div class="alert alert-danger">
+                        <?php echo $_SESSION['error'];
+                        unset($_SESSION['error']); ?>
+                    </div>
+                <?php endif; ?>
+                <?php if (isset($_SESSION['success'])) : ?>
+                    <div class="alert alert-success">
+                        <?php echo $_SESSION['success'];
+                        unset($_SESSION['success']); ?>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+    <?= $content; ?>
 </div>
 
 <!--information-starts-->
@@ -145,12 +177,14 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="footer-top">
             <div class="col-md-6 footer-left">
                 <form>
-                    <input type="text" value="Enter Your Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Your Email';}">
+                    <input type="text" value="Enter Your Email" onfocus="this.value = '';"
+                           onblur="if (this.value == '') {this.value = 'Enter Your Email';}">
                     <input type="submit" value="Subscribe">
                 </form>
             </div>
             <div class="col-md-6 footer-right">
-                <p>© 2015 Luxury Watches. All Rights Reserved | Design by  <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>
+                <p>© 2015 Luxury Watches. All Rights Reserved | Design by <a href="http://w3layouts.com/"
+                                                                             target="_blank">W3layouts</a></p>
             </div>
             <div class="clearfix"></div>
         </div>
@@ -163,7 +197,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
                 <h4 class="modal-title" id="myModalLabel">Корзина</h4>
             </div>
             <div class="modal-body">
@@ -188,6 +223,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 <script src="js/jquery-1.11.0.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/validator.js"></script>
 <script src="js/typeahead.bundle.js"></script>
 <!--dropdown-->
 <script src="js/jquery.easydropdown.js"></script>
@@ -218,7 +254,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <script defer src="js/jquery.flexslider.js"></script>
 <script>
     // Can also be used with $(document).ready()
-    $(window).load(function() {
+    $(window).load(function () {
         $('.flexslider').flexslider({
             animation: "slide",
             controlNav: "thumbnails"
@@ -227,22 +263,22 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 </script>
 <script src="js/jquery.easydropdown.js"></script>
 <script type="text/javascript">
-    $(function() {
+    $(function () {
 
         var menu_ul = $('.menu_drop > li > ul'),
-            menu_a  = $('.menu_drop > li > a');
+            menu_a = $('.menu_drop > li > a');
 
         menu_ul.hide();
 
-        menu_a.click(function(e) {
+        menu_a.click(function (e) {
             e.preventDefault();
-            if(!$(this).hasClass('active')) {
+            if (!$(this).hasClass('active')) {
                 menu_a.removeClass('active');
                 menu_ul.filter(':visible').slideUp('normal');
-                $(this).addClass('active').next().stop(true,true).slideDown('normal');
+                $(this).addClass('active').next().stop(true, true).slideDown('normal');
             } else {
                 $(this).removeClass('active');
-                $(this).next().stop(true,true).slideUp('normal');
+                $(this).next().stop(true, true).slideUp('normal');
             }
         });
 
