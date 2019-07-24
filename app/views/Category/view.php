@@ -47,6 +47,11 @@
                     <h3>В этой категории товаров пока нет...</h3>
                 <?php endif; ?>
             </div>
+            <div class="col-md-3 prdt-right">
+                <div class="w_sidebar">
+                    <?php new \app\widgets\filter\Filter(); ?>
+                </div>
+            </div>
             <div class="clearfix"></div>
         </div>
     </div>

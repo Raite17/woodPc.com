@@ -45,7 +45,7 @@ class Currency
     protected function getHtml()
     {
         ob_start();
-        require_once $this->tpl;
+            require_once $this->tpl;
         return ob_get_clean();
     }
 }

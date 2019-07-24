@@ -1,3 +1,40 @@
+/* Filters */
+$('.w_sidebar input').on('change', function () {
+    let checked = $('.w_sidebar input:checked'),
+        data = '';
+    checked.each(function () {
+        data += $(this).val() + ',';
+    });
+    if (data) {
+        $.ajax({
+            url: location.href,
+            data: {filter: data},
+            type: "GET",
+            beforeSend: function () {
+                $('.preloader').fadeIn(300, () => {
+                    $('.product-one').hide();
+                    var url = location.search.replace(/filter(.+?)(&|$)/g, '');
+                    var newURL = location.pathname + url + (location.search ? "&" : "?") + "filter=" + data;
+                    newURL = newURL.replace('&&', '&');
+                    newURL = newURL.replace('?&', '?');
+                    history.pushState({}, '', newURL);
+                });
+            },
+            success: function (res) {
+                $('.preloader').delay(500).fadeOut('slow', () => {
+                    $('.product-one').html(res).fadeIn();
+                });
+            },
+            error: function () {
+                alert('Ошибка!');
+            }
+        });
+    } else {
+        window.location = location.pathname;
+    }
+});
+
+
 /* Search */
 var products = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.whitespace,
@@ -13,15 +50,14 @@ products.initialize();
 $("#typeahead").typeahead({
     // hint: false,
     highlight: true
-},{
+}, {
     name: 'products',
     display: 'title',
     limit: 9,
     source: products
 });
 
-$('#typeahead').bind('typeahead:select', function(ev, suggestion) {
-    // console.log(suggestion);
+$('#typeahead').bind('typeahead:select', function (ev, suggestion) {
     window.location = path + '/search/?s=' + encodeURIComponent(suggestion.title);
 });
 
