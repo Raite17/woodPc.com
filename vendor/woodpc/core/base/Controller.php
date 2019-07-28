@@ -50,7 +50,7 @@ abstract class Controller
     public function loadView($view, $vars = [])
     {
         extract($vars);
-        require APP . "/views/{$this->prefix}{$this->controller}/{$view}.php";
+         require APP . "/views/{$this->prefix}{$this->controller}/{$view}.php";
         die;
     }
 }
